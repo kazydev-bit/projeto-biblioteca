@@ -50,6 +50,18 @@ while True:
             elif respf == 4:
                 print(f"aqui estão todos os livros emprestados no momento \n {emprestados}")
 
+
+            elif respf == 6:
+                    procurar = input("Digite parte ou o nome completo do livro que deseja procurar: ").lower()
+                    encontrados = [livro for livro in livros if procurar in livro.lower()]
+
+                    if encontrados:
+                        print("Livros encontrados:")
+                        for livro in encontrados:
+                            print(f" - {livro}")
+                    else:
+                         print("Nenhum livro correspondente foi encontrado na lista de disponíveis.")
+
             elif respf == 5:
                 break 
 
@@ -94,6 +106,20 @@ while True:
                     print(f"o livro {devl} foi devolvido com sucesso")
                 else:
                     print("o livro que voce esta tentando devolver não está registrado como emprestado")
+
+            elif respa == 6:
+                procurar = input("Digite parte ou o nome completo do livro que deseja procurar: ").lower()
+                encontrados = [livro for livro in livros if procurar in livro.lower()]
+
+                if encontrados:
+                     print("Livros disponíveis encontrados:")
+
+                     for livro in encontrados:
+                        print(f" - {livro}")
+                
+                else:
+                     print("Nenhum livro correspondente foi encontrado na lista de disponíveis.")
+
 
             elif respa == 5:
                 break 
