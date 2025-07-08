@@ -19,7 +19,7 @@ while True:
             print("3.REMOVER LIVRO")
             print("4.MOSTRAR LIVROS EMPRRESTADO")
             print("5.TROCAR DE USUARIO")
-            print("5.PESQUISAR LIVROS") 
+            print("6.PESQUISAR LIVROS") 
             print("0.SAIR")
             print('=' * 30)
             respf = int(input("selecione a opção desejada: "))
@@ -82,80 +82,86 @@ while True:
                 break 
 
     elif resp1 == "aluno":
-        while True:
-            print('=' * 30)
-            print("==========BEM VINDO===========")
-            print("OQUE DESEJA FAZER")
-            print("1.PEGAR LIVRO")
-            print("2.DEVOLVER LIVRO")
-            print("3.MOSTRAR LIVROS DISPONIVES")
-            print("4.PESQUISAR LIVRO")
-            print("5.TROCAR DE USUARIO")
-            print("0.SAIR")
-            print('=' * 30)
-            respa = int(input("selecione a opção desejada: "))
+        if livros:
+            while True:
+                print('=' * 30)
+                print("==========BEM VINDO===========")
+                print("OQUE DESEJA FAZER")
+                print("1.PEGAR LIVRO")
+                print("2.DEVOLVER LIVRO")
+                print("3.MOSTRAR LIVROS DISPONIVES")
+                print("4.PESQUISAR LIVRO")
+                print("5.TROCAR DE USUARIO")
+                print("0.SAIR")
+                print('=' * 30)
+                respa = int(input("selecione a opção desejada: "))
 
-            if respa == 0:
-                print("encerrando programa")
-                exit()
+                if respa == 0:
+                    print("encerrando programa")
+                    exit()
 
    
-            elif respa == 1:
-                print("Livros disponíveis:")
-                if livros:
-                    for livro in livros:
-                        print(f"Livro: {livro}")
-                else:
-                    print("Nenhum livro disponível.")
-                emprestimo = input("Nome do livro a emprestar: ").lower()
-                matricula = input("Digite sua matrícula: ")
+                elif respa == 1:
+                    print("Livros disponíveis:")
+                    if livros:
+                        for livro in livros:
+                            print(f"Livro: {livro}")
+                    else:
+                        print("Nenhum livro disponível.")
+                    emprestimo = input("Nome do livro a emprestar: ").lower()
+                    matricula = input("Digite sua matrícula: ")
                 
-                if emprestimo in livros:
-                    livros.remove(emprestimo)
-                    emprestados.append(emprestimo)
-                    matriz.append((matricula,  emprestimo))
-                    print("Livro emprestado com sucesso.")
-                else:
-                    print("Livro não disponível.")
+                    if emprestimo in livros:
+                        livros.remove(emprestimo)
+                        emprestados.append(emprestimo)
+                        matriz.append((matricula,  emprestimo))
+                        print("Livro emprestado com sucesso.")
+                    else:
+                        print("Livro não disponível.")
 
-            elif respa == 2:
-                devl = input("Digite o nome do livro: ").lower()
-                devm = input("Digite sua matrícula: ")
-                if (devm, devl) in matriz:
-                    matriz.remove((devm, devl))
-                    emprestados.remove(devl)
-                    livros.append(devl)
-                    print("Livro devolvido com sucesso.")
-                else:
-                    print("Esse empréstimo não foi encontrado.")
+                elif respa == 2:
+                    devl = input("Digite o nome do livro: ").lower()
+                    devm = input("Digite sua matrícula: ")
+                    if (devm, devl) in matriz:
+                        matriz.remove((devm, devl))
+                        emprestados.remove(devl)
+                        livros.append(devl)
+                        print("Livro devolvido com sucesso.")
+                    else:
+                        print("Esse empréstimo não foi encontrado.")
 
 
-                if (devm, devl) in matriz:
-                    matriz.remove((devm, devl))
-                    livros.append(devl)
-                    emprestados.remove(devl)
-                    print(f"o livro {devl} foi devolvido com sucesso")
+                    if (devm, devl) in matriz:
+                        matriz.remove((devm, devl))
+                        livros.append(devl)
+                        emprestados.remove(devl)
+                        print(f"o livro {devl} foi devolvido com sucesso")
 
-            elif respa == 3:
+                elif respa == 3:
                         print("Livros disponíveis:")
                         if livros:
                             for livro in livros:
                                 print(f"Livro: {livro}")
 
-            elif respa == 4:
-                procurar = input("Digite parte ou o nome completo do livro que deseja procurar: ").lower()
-                encontrados = [livro for livro in livros if procurar in livro.lower()]
+                elif respa == 4:
+                    procurar = input("Digite parte ou o nome completo do livro que deseja procurar: ").lower()
+                    encontrados = [livro for livro in livros if procurar in livro.lower()]
 
-                if encontrados:
-                     print("Livros disponíveis encontrados:")
+                    if encontrados:
+                        print("Livros disponíveis encontrados:")
 
-                     for livro in encontrados:
-                        print(f" - {livro}")
+                        for livro in encontrados:
+                            print(f" - {livro}")
                 
-                else:
-                     print("Nenhum livro correspondente foi encontrado na lista de disponíveis.")
+                    else:
+                        print("Nenhum livro correspondente foi encontrado na lista de disponíveis.")
 
 
-            elif respa == 5:
-                break 
+                elif respa == 5:
+                    break 
+        else:
+            print('=' * 30)
+            print("Nenhum livro foi encontrado em nossa base de dados")
+            print("por favor volte mais tarde ou contate um funcionario")
+            print('=' * 30)
 
